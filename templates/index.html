@@ -1,1 +1,46 @@
-HELLO WORLD
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>电话链助手</title>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#index").addClass("pure-menu-selected")
+        })
+    </script>
+</head>
+
+<body>
+
+
+<div class="pure-g-r" id="layout" style="letter-spacing:0">
+
+
+    {% include "menu.html" %}
+
+
+    <div id="right">
+
+        <div class="header">
+            <h1>获取数据</h1>
+        </div>
+
+        <div id="content" style="text-align: center;margin-top: 30px" >
+            <p>请将要导入的数据放入 data 文件夹中，然后开始获取</p>
+            <button class="pure-button pure-button-primary">开始获取</button>
+        </div>
+
+        <div style="clear: both; height: 200px"/>
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+
+</html>
