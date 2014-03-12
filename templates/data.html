@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>电话链助手</title>
+
+</head>
+
+<body>
+
+
+<div class="pure-g-r" id="layout" style="letter-spacing:0">
+
+
+    {% include "menu.html" %}
+
+
+    <div id="right">
+
+        <div class="header">
+            <h1>数据显示</h1>
+        </div>
+
+        <div id="content" style="text-align: center;margin-top: 30px" >
+            <table id="myTable" class="tablesorter">
+                <thead>
+                <tr>
+                    <th style="white-space:nowrap;">姓名</th>
+                    <th>-</th>
+                    {% for link in persons.0.links %}
+                        <th>-</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for person in persons %}
+                    <tr>
+                        <td style="white-space:nowrap;">{{ person.name }}</td>
+                        {% for link in person.links %}
+                            {% if not link.remind_str %}
+                                <td style="white-space:nowrap;">{{ link.show_phone }}</td>
+                            {% endif %}
+                            {% if link.remind_str %}
+                                <td style="white-space:nowrap;color: red;cursor: pointer" title="{{ link.remind_str }}" onclick="alert('{{ link.remind_str }}')">{{ link.show_phone }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+
+        </div>
+
+        <div style="clear: both; height: 200px"/>
+
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#data").addClass("pure-menu-selected")
+    })
+</script>
+
+
+</body>
+
+</html>

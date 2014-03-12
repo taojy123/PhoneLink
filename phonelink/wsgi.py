@@ -19,7 +19,7 @@ import sys
 
 path = os.path.dirname(__file__)
 path = path.replace(r"\phonelink", "", 1).replace(r"/phonelink", "", 1)
-os.chdir(path)
+#os.chdir(path)
 sys.path.append(path)
 print os.getcwd()
 

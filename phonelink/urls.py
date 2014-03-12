@@ -14,6 +14,11 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     ('^$', index),
     ('^index/$', index),
+    ('^get_data/$', get_data),
+    ('^data/$', data),
+    ('^blacklist/$', blacklist),
+    ('^add_blacklist/$', add_blacklist),
+    ('^del_blacklist/$', del_blacklist),
 )
 # This will work if DEBUG is True
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
