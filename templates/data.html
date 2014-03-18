@@ -29,7 +29,9 @@
                     <th style="white-space:nowrap;">姓名</th>
                     <th>-</th>
                     {% for link in persons.0.links %}
-                        <th>-</th>
+                        {% if link.remind_str %}
+                            <th>-</th>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 </thead>
@@ -38,11 +40,8 @@
                     <tr>
                         <td style="white-space:nowrap;">{{ person.name }}</td>
                         {% for link in person.links %}
-                            {% if not link.remind_str %}
-                                <td style="white-space:nowrap;">{{ link.show_phone }}</td>
-                            {% endif %}
                             {% if link.remind_str %}
-                                <td style="white-space:nowrap;color: red;cursor: pointer" title="{{ link.remind_str }}" onclick="alert('{{ link.remind_str }}')">{{ link.show_phone }}</td>
+                                <td style="white-space:nowrap;color: {{ link.show_color }};cursor: pointer" title="{{ link.remind_str }}" onclick="alert('{{ link.remind_str }}')">{{ link.show_phone }}</td>
                             {% endif %}
                         {% endfor %}
                     </tr>
