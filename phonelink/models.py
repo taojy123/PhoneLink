@@ -34,7 +34,7 @@ class Link(models.Model):
 
     @property
     def show_phone(self):
-        return self.phone[:3] + "**" + self.phone[5:]
+        return self.phone
 
     @property
     def show_color(self):
@@ -60,7 +60,7 @@ class Link(models.Model):
         if self.count > 1:
             msg += u" %d 次出现 / "%self.count
             for link in self.links:
-                msg += link.person.name[:1] + "* / "
+                msg += link.person.name + " / "
         if Blacklist.objects.filter(phone=self.phone):
             msg += " <%s> "%Blacklist.objects.filter(phone=self.phone)[0].mark
         return msg

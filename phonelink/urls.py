@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     ('^blacklist/$', blacklist),
     ('^add_blacklist/$', add_blacklist),
     ('^del_blacklist/$', del_blacklist),
+    ('^clean_data/$', clean_data),
 )
 # This will work if DEBUG is True
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

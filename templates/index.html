@@ -25,6 +25,7 @@
         <div id="content" style="text-align: center;margin-top: 30px" >
             <p>请将要导入的数据放入 data 文件夹中，然后开始获取</p>
             <a class="pure-button pure-button-primary" href="/get_data">开始获取</a>
+            <a class="pure-button pure-button-primary" href="/clean_data" onclick="return confirm('确认清空数据')">清空数据</a>
         </div>
 
         <div style="clear: both; height: 200px"/>
@@ -39,7 +40,6 @@
     $(function(){
         $("#index").addClass("pure-menu-selected")
     })
-    alert("此为测试版软件 数据展示时会有 * 号隐藏部分号码")
 </script>
 
 </body>

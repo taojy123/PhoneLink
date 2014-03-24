@@ -31,24 +31,51 @@ def get_data(request):
             person.name = name
             person.save()
         else:
-            person = Person.objects.get(name=name)
+            person = Person.objects.filter(name=name)[0]
 
         f = xlrd.open_workbook(filename)
         table = f.sheet_by_index(0)
-        times = table.col_values(1)[1:]
-        phones = table.col_values(1)[1:]
-        for time, phone in zip(times, phones):
+        #times = table.col_values(1)[1:]
+        phones = table.col_values(0)[1:]
+        #for time, phone in zip(times, phones):
+        
+        for phone in phones:
+
             #call = Call()
             #call.person = person
             #call.time = time
             #call.phone = phone
             #call.save()
 
+            try:
+                phone = phone.strip()
+            except:
+                pass
+            phone = str(phone).replace(".0", "")
+            phone = phone.replace("'", "").replace('"', '')
+
             if not Link.objects.filter(person=person).filter(phone=phone):
                 link = Link()
                 link.person = person
                 link.phone = phone
                 link.save()
+
+    t = []
+    persons = Person.objects.all()
+    for person in persons:
+        if person.name in t:
+            print "del person - ", person.name
+            person.delete()
+            Link.objects.filter(person=person).delete()
+        t.append(person.name)
+
+    t = []
+    links = Link.objects.all()
+    for link in links:
+        if [link.person.id, link.phone] in t:
+            print "del link - ", link.person.name
+            link.delete()
+        t.append([link.person.id, link.phone])
 
     return HttpResponseRedirect("/data")
 
@@ -79,6 +106,12 @@ def del_blacklist(request):
     id = request.REQUEST.get("id")
     Blacklist.objects.filter(id=id).delete()
     return HttpResponseRedirect("/blacklist")
+
+
+def clean_data(request):
+    Link.objects.all().delete()
+    Person.objects.all().delete()
+    return HttpResponseRedirect("/")
 
 
 
